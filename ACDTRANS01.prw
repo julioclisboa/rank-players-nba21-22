@@ -36,6 +36,7 @@ User Function ACDTRANS01()
 	private aAreasTab			:= {}
 	private aDadComplem			:= {}
 	private cIdUserAtu			:= __cUserId
+	private cBkpOperador		:= CBRetOpe()
 
 	VTSAVE SCREEN TO aScreen
 
@@ -226,6 +227,7 @@ Static Function trocaEmpFil(cEmpAtu,cFilAtu)
 	local aAllusers		:= {}
 	Local cEmpDef		:= cEmpAnt
 	Local cFilDef		:= cFilAnt
+	local cOperAtual	:= ''
 
 	Default cEmpAtu     := cEmpDef
 	Default cFilAtu     := cFilDef
@@ -238,7 +240,7 @@ Static Function trocaEmpFil(cEmpAtu,cFilAtu)
 	Conout( "	>> EMPRESA NOVA [" + alltrim(alltochar(cEmpAtu)) + "]" )
 	Conout( "	>> FILIAL NOVA [" + alltrim(alltochar(cFilAtu)) + "]" )
 	RpcClearEnv()
-	If RpcSetEnv(cEmpAtu,cFilAtu)
+	If RpcSetEnv(cEmpAtu,cFilAtu,,,'ACD')
 		Conout( "	>> TROCA DE EMPRESA/FILIAL REALIZADA COM SUCESSO!" )
 		Conout( "	>> EMPRESA/FILIAL NOVA: [" + cEmpAnt + "/" + cFilAnt + "]" )
 
@@ -249,6 +251,8 @@ Static Function trocaEmpFil(cEmpAtu,cFilAtu)
 			If len(aAllusers) > 0
 				__cUserId		:= aAllusers[1,2]
 				cUserName		:= aAllusers[1,4]
+				cOperAtual		:= CBRetOpe()
+				geraLog('	>> Operador: ' + cOperAtual )
 			else
 				geraLog('	>> ERRO ao buscar o usuário ' + cIdUserAtu + '...')
 			endif
