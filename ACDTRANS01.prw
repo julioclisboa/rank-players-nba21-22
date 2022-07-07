@@ -10,6 +10,13 @@
 #DEFINE P_LOCAL			05
 #DEFINE P_QTD2UM		06
 
+#define POS_TRANSP		01
+#define POS_PLACA		02
+#define POS_UFPLAC		03
+#define POS_VOLUME		04
+#define POS_PESLIQ		05
+#define POS_PESBRU		06
+
 //-----------------------------------------------------------------
 /*/{Protheus.doc} ACDTRANS01
  Rotina de Menu do ACD para Transferência entre Filiais
@@ -17,7 +24,6 @@
 @type		Function
 @author		Gerson Schiavo
 @since 		14/04/2016
-@Return		lRet .T.
 /*/
 //-----------------------------------------------------------------
 User Function ACDTRANS01()
@@ -28,6 +34,7 @@ User Function ACDTRANS01()
 
 	private aDadosTemp			:= {}
 	private aAreasTab			:= {}
+	private aDadComplem			:= {}
 	private cIdUserAtu			:= __cUserId
 
 	VTSAVE SCREEN TO aScreen
@@ -550,6 +557,60 @@ Static Function Consulta(aLista)
 Return
 
 //-----------------------------------------------------------------
+Static Function fDadosCompl(cNota,cSerie)
+
+	local aTela				:= {}
+
+	Private cTransp			:= Space(06)
+	Private cPlaca			:= Space(07)
+	Private cUFPlaca		:= Space(02)
+	Private nVolume			:= 00000
+	Private nPesoLiq		:= 00000
+	Private nPesoBrt		:= 00000
+
+	DbSelectArea("SF2")
+	SF2->(DbSetOrder(1))
+	If dbSeek(xFilial("SF2")+cNota+cSerie)
+		nVolume 	:= SF2->F2_VOLUME1
+		nPesoLiq	:= SF2->F2_PLIQUI
+		nPesoBrt	:= SF2->F2_PBRUTO
+	EndIf
+
+	aTela := VTSave()
+
+	VTClear()
+	@ 000,000 VTSAY "Dados Complementares da Nota Fiscal"
+	@ 001,000 VTSAY "TRANSPORTADORA:"
+	@ 002,000 VTGet cTransp  pict '@!' Valid fVldTransp(cTransp) .And. !Empty(cTransp) F3 'SA4'
+	@ 003,000 VTSAY "PLACA:"
+	@ 004,000 VTGet cPlaca pict '@!'  Valid fVldPlaca(cPlaca) .and. !Empty(cPlaca) // Fausto Costa - 15/10/2019 - Chamado 12617
+	@ 005,000 VTSAY "UF:"
+	@ 006,000 VTGet cUFPlaca pict '@!' Valid fVldUF(cUFPlaca) .and. !Empty(cUFPlaca)
+	VTRead()
+	If nVolume == 0 .OR. nPesoLiq == 0 .OR.  nPesoBrt == 0
+		VTAlert("Volume ou peso estao zerados, favor informar esses dados:","Aviso",.T.,4000)
+		VTClear()
+		@ 000,000 VTSAY "Dados Complementares da Nota Fiscal"
+		@ 001,000 VTSAY "VOLUME:"
+		@ 002,000 VTGet nVolume  pict '@E 99999'
+		@ 003,000 VTSAY "PESO LIQUIDO:"
+		@ 004,000 VTGet nPesoLiq  pict '@E 99999.99'
+		@ 005,000 VTSAY "PESO BRUTO:"
+		@ 006,000 VTGet nPesoBrt  pict '@E 99999.99'
+		VTRead()
+	EndIf
+
+	aDadComplem		:= {}
+	aAdd( aDadComplem, cTransp ) 		//POS_TRANSP
+	aAdd( aDadComplem, cPlaca )			//POS_PLACA
+	aAdd( aDadComplem, cUFPlaca )		//POS_UFPLAC
+	aAdd( aDadComplem, nVolume )		//POS_VOLUME
+	aAdd( aDadComplem, nPesoLiq )		//POS_PESLIQ
+	aAdd( aDadComplem, nPesoBrt )		//POS_PESBRU
+
+return
+
+//-----------------------------------------------------------------
 /*/{Protheus.doc} Finaliza
 Funcao para Finalizar Processo
 
@@ -600,13 +661,7 @@ Static Function Finaliza()
 	Private nPLiqACD := 0
 	Private nVolACD := 0
 
-	Private cPlaca		:= Space(07)
-	Private cUFPlaca	:= Space(02)
-	Private cTransp		:= Space(06)
 	Private cCodMot		:= Space(11)
-	Private nVolume		:= 00000
-	Private nPesoLiq	:= 00000
-	Private nPesoBrt	:= 00000
 
 	cSerie:= padR(allTrim(cSerie),tamSx3("F2_SERIE")[1])
 
@@ -746,7 +801,7 @@ Static Function Finaliza()
 			Alltrim( aDadosTemp[nItem,P_LOTE] )	, ""							, dDtValid		, Alltrim( aDadosTemp[nItem,P_ENDERECO] )	,;
 			""					, ""							, cTesSai		, cTesEnt					,;
 			nVlrPrv				, nTotPrv} )
-	
+
 	next
 
 	If lValNeg .OR. lValZero .OR. lTabPrc .OR. lProdBlq
@@ -778,6 +833,8 @@ Static Function Finaliza()
 		Return(.F.)
 	EndIf
 
+	fDadosCompl(cNota,cSerie)
+
 	Begin Transaction
 
 		if Len(aDadosTransf) > 0
@@ -795,54 +852,21 @@ Static Function Finaliza()
 				//u_RetPesoACD(cFilOri,cNota,cSerie,cCliente,cLojaCli)
 
 				While .T.
-					DbSelectArea("SF2")
-					SF2->(DbSetOrder(1))
-					If dbSeek(xFilial("SF2")+cNota+cSerie)
-						nVolume 	:= SF2->F2_VOLUME1
-						nPesoLiq	:= SF2->F2_PLIQUI
-						nPesoBrt	:= SF2->F2_PBRUTO
+					/* Fausto Costa - 14/05/2020
+					If nPLiqACD == 0
+						nVolume 	:= nVolComp
+						nPesoLiq	:= nPLiqComp
+						nPesoBrt	:= nPBrtComp
+					Else
+						nVolume 	:= nVolACD
+						nPesoLiq	:= nPLiqACD
+						nPesoBrt	:= nPBrtACD
 					EndIf
-			/* Fausto Costa - 14/05/2020
-			If nPLiqACD == 0
-				nVolume 	:= nVolComp
-				nPesoLiq	:= nPLiqComp
-				nPesoBrt	:= nPBrtComp
-			Else
-				nVolume 	:= nVolACD
-				nPesoLiq	:= nPLiqACD
-				nPesoBrt	:= nPBrtACD
-			EndIf
-			*/
-					aTela := VTSave()
-
-					VTClear()
-					@ 000,000 VTSAY "Dados Complementares da Nota Fiscal"
-					@ 001,000 VTSAY "TRANSPORTADORA:"
-					@ 002,000 VTGet cTransp  pict '@!' Valid fVldTransp(cTransp) .And. !Empty(cTransp) F3 'SA4'
-					@ 003,000 VTSAY "PLACA:"
-					@ 004,000 VTGet cPlaca pict '@!'  Valid fVldPlaca(cPlaca) .and. !Empty(cPlaca) // Fausto Costa - 15/10/2019 - Chamado 12617
-					@ 005,000 VTSAY "UF:"
-					@ 006,000 VTGet cUFPlaca pict '@!' Valid fVldUF(cUFPlaca) .and. !Empty(cUFPlaca)
-					//@ 005,000 VTSAY "COD.MOTORISTA:"
-					//@ 006,000 VTGet cCodMot pict '@!' F3 'DHB' Valid fVldCodMot(cCodMot) .and. Empty(cCodMot)*/
-					VTRead()
-
-					If nVolume == 0 .OR. nPesoLiq == 0 .OR.  nPesoBrt == 0
-						VTAlert("Volume ou peso estao zerados, favor informar esses dados:","Aviso",.T.,4000)
-						VTClear()
-						@ 000,000 VTSAY "Dados Complementares da Nota Fiscal"
-						@ 001,000 VTSAY "VOLUME:"
-						@ 002,000 VTGet nVolume  pict '@E 99999'
-						@ 003,000 VTSAY "PESO LIQUIDO:"
-						@ 004,000 VTGet nPesoLiq  pict '@E 99999.99'
-						@ 005,000 VTSAY "PESO BRUTO:"
-						@ 006,000 VTGet nPesoBrt  pict '@E 99999.99'
-						VTRead()
-					EndIf
+					*/
 
 					If VTYesNo("Gravar Dados Complementares ?","Atencao",.T.)
 
-						lGravou:= GravaDadosCompl(cTransp,cPlaca,cUFPlaca,cNota,cSerie,nVolume,nPesoLiq,nPesoBrt)
+						lGravou:= GravaDadosCompl( cNota,cSerie )
 
 						if lGravou
 
@@ -935,7 +959,6 @@ Return(lRet)
 Funcao para buscar Peso Liquido e Peso Bruto
 
 @type		Function
-@param		cTransp
 @author		Fausto Costa
 @since 		14/11/2018
 @Return		lRet Variavel logica
@@ -984,7 +1007,6 @@ Return(lRetTrans)
 Funcao para validar Codigo do Motorista
 
 @type		Function
-@param		cTransp
 @author		Fausto Costa
 @since 		13/05/2020
 @Return		lRet Variavel logica
@@ -1007,13 +1029,11 @@ Return(lRetCMot)
 Funcao para preencher dados complementares
 
 @type		Function
-@param		cTransp,cPlaca,cUFPlaca
 @author		Fausto Costa
 @since 		13/09/2017
-@Return		lRet Variavel logica
 /*/
 //-----------------------------------------------------------------
-Static Function GravaDadosCompl(cTransp,cPlaca,cUFPlaca,cNotaFis,cSerFis,nVol,nPLiq,nPBrt)
+Static Function GravaDadosCompl(cNotaFis,cSerFis)
 	Local lRetGrv:= .T.
 
 	dbSelectArea("SF2")
@@ -1021,12 +1041,12 @@ Static Function GravaDadosCompl(cTransp,cPlaca,cUFPlaca,cNotaFis,cSerFis,nVol,nP
 	If dbSeek(xFilial("SF2")+cNotaFis+cSerFis)
 
 		SF2->(RecLock("SF2", .F.))
-		SF2->F2_TRANSP	:= cTransp
-		SF2->F2_ZZPLACA	:= UPPER(cPlaca)
-		SF2->F2_ZZUFPLA	:= UPPER(cUFPlaca)
-		SF2->F2_VOLUME1	:= nVol
-		SF2->F2_PLIQUI	:= nPLiq
-		SF2->F2_PBRUTO	:= nPBrt
+		SF2->F2_TRANSP	:= aDadComplem[POS_TRANSP]
+		SF2->F2_ZZPLACA	:= UPPER( aDadComplem[POS_PLACA] )
+		SF2->F2_ZZUFPLA	:= UPPER( aDadComplem[POS_UFPLAC] )
+		SF2->F2_VOLUME1	:= aDadComplem[POS_VOLUME]
+		SF2->F2_PLIQUI	:= aDadComplem[POS_PESLIQ]
+		SF2->F2_PBRUTO	:= aDadComplem[POS_PESBRU]
 		SF2->(MsUnLock())
 
 	else
@@ -1042,7 +1062,6 @@ Return lRetGrv
 Funcao para validar Placa
 
 @type		Function
-@param		cPlaca
 @author		Fausto Costa
 @since 		13/09/2017
 @Return		lRet Variavel logica
@@ -1076,7 +1095,6 @@ return(lRetorno)
 Funcao para validar UF da Placa
 
 @type		Function
-@param		cUFPlaca
 @author		Fausto Costa
 @since 		13/09/2017
 @Return		lRet Variavel logica
