@@ -27,6 +27,8 @@ User Function ACDTRANS01()
 	Local nOpcao  				:= 1
 
 	private aDadosTemp			:= {}
+	private aAreasTab			:= {}
+	private cIdUserAtu			:= __cUserId
 
 	VTSAVE SCREEN TO aScreen
 
@@ -171,6 +173,7 @@ Static Function fTransfere(nOpcao)
 							aEmp 	:= VTNewEmpr(@aEmprx,.T.)
 							cFildest:= aEmp[1]+aEmp[2]
 
+							salvaAreas()
 							trocaEmpFil(aEmp[1],aEmp[2])
 
 							VTClear()
@@ -189,6 +192,7 @@ Static Function fTransfere(nOpcao)
 							endif
 
 							trocaEmpFil(cEmpBKP,cFilBKP)
+							restAreas()
 						endif
 						lAbandona:= .t.
 						exit
@@ -212,6 +216,7 @@ Return
 //-----------------------------------------------------------------
 Static Function trocaEmpFil(cEmpAtu,cFilAtu)
 
+	local aAllusers		:= {}
 	Local cEmpDef		:= cEmpAnt
 	Local cFilDef		:= cFilAnt
 
@@ -229,6 +234,20 @@ Static Function trocaEmpFil(cEmpAtu,cFilAtu)
 	If RpcSetEnv(cEmpAtu,cFilAtu)
 		Conout( "	>> TROCA DE EMPRESA/FILIAL REALIZADA COM SUCESSO!" )
 		Conout( "	>> EMPRESA/FILIAL NOVA: [" + cEmpAnt + "/" + cFilAnt + "]" )
+
+		PswOrder(1)
+		If PswSeek( cIdUserAtu )
+			geraLog('	>> Posicionado no usuário ' + cIdUserAtu + ' com sucesso!')
+			aAllusers	:= FWSFALLUSERS({cIdUserAtu})
+			If len(aAllusers) > 0
+				__cUserId		:= aAllusers[1,2]
+				cUserName		:= aAllusers[1,4]
+			else
+				geraLog('	>> ERRO ao buscar o usuário ' + cIdUserAtu + '...')
+			endif
+		else
+			geraLog('	>> ERRO ao posicionar no usuário ' + cIdUserAtu + '...')
+		endif
 	else
 		Conout( "	>> ERRO NA TROCA DE EMPRESA/FILIAL!" )
 		VTAlert("	>> Não foi possível entrar na empresa/filial: " + cEmpAtu + "/" + cFilAtu,"Aviso",.T.,4000)
@@ -1613,3 +1632,31 @@ Return
 Static Function CLote() //ContaLote
 	nQtdVol		:= Len(aDadosTemp)
 Return
+
+
+//----------------------------------------------------------------------------------------------------------
+static Function salvaAreas()
+
+	local nAreas		:= 0
+	local cTabela		:= ''
+
+	for nAreas := 1 to len(cFOpened) step 3
+		cTabela		:=  Substr( cFOpened, nAreas, 3 )
+		aAdd( aAreasTab, (cTabela)->(GetArea()) )
+	next
+
+return
+
+//----------------------------------------------------------------------------------------------------------
+static Function restAreas()
+
+	local nAreas		:= 0
+	local cTabela		:= ''
+
+	for nAreas := 1 to len(aAreasTab)
+		cTabela		:=  aAreasTab[nAreas,1]
+		(cTabela)->(DbSetOrder(1))
+		RestArea(aAreasTab[nAreas])
+	next
+
+return
