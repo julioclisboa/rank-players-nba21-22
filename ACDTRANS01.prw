@@ -201,6 +201,7 @@ Static Function fTransfere(nOpcao)
 
 							trocaEmpFil(cEmpBKP,cFilBKP)
 							restAreas()
+
 						endif
 						lAbandona:= .t.
 						exit
@@ -232,17 +233,19 @@ Static Function trocaEmpFil(cEmpAtu,cFilAtu)
 	Default cEmpAtu     := cEmpDef
 	Default cFilAtu     := cFilDef
 
-	Conout( Replicate('-',60) )
-	Conout( "INICIO TROCA EMPRESA/FILIAL" )
-	Conout( "	>> EMPRESA ATUAL [" + alltrim(alltochar(cEmpAnt)) + "]" )
-	Conout( "	>> FILIAL ATUAL [" + alltrim(alltochar(cFilAnt)) + "]" )
-	Conout( " " )
-	Conout( "	>> EMPRESA NOVA [" + alltrim(alltochar(cEmpAtu)) + "]" )
-	Conout( "	>> FILIAL NOVA [" + alltrim(alltochar(cFilAtu)) + "]" )
+	geraLog( Replicate('-',60) )
+	geraLog( "INICIO TROCA EMPRESA/FILIAL" )
+	geraLog( "	>> EMPRESA ATUAL [" + alltrim(alltochar(cEmpAnt)) + "]" )
+	geraLog( "	>> FILIAL ATUAL [" + alltrim(alltochar(cFilAnt)) + "]" )
+	geraLog( " " )
+	geraLog( "	>> EMPRESA NOVA [" + alltrim(alltochar(cEmpAtu)) + "]" )
+	geraLog( "	>> FILIAL NOVA [" + alltrim(alltochar(cFilAtu)) + "]" )
 	RpcClearEnv()
 	If RpcSetEnv(cEmpAtu,cFilAtu,,,'ACD')
-		Conout( "	>> TROCA DE EMPRESA/FILIAL REALIZADA COM SUCESSO!" )
-		Conout( "	>> EMPRESA/FILIAL NOVA: [" + cEmpAnt + "/" + cFilAnt + "]" )
+		geraLog( "	>> TROCA DE EMPRESA/FILIAL REALIZADA COM SUCESSO!" )
+		geraLog( "	>> EMPRESA/FILIAL NOVA: [" + cEmpAnt + "/" + cFilAnt + "]" )
+		geraLog( "	>> INICIO POSICIONAMENTO USUARIO..." )
+		geraLog( "	>> OPERADOR ATUAL...:" + CBRetOpe()  )
 
 		PswOrder(1)
 		If PswSeek( cIdUserAtu )
@@ -251,7 +254,7 @@ Static Function trocaEmpFil(cEmpAtu,cFilAtu)
 			If len(aAllusers) > 0
 				__cUserId		:= aAllusers[1,2]
 				cUserName		:= aAllusers[1,4]
-				cOperAtual		:= CBRetOpe()
+				cOperAtual		:= CBRetOpe() 
 				geraLog('	>> Operador: ' + cOperAtual )
 			else
 				geraLog('	>> ERRO ao buscar o usuário ' + cIdUserAtu + '...')
@@ -259,12 +262,13 @@ Static Function trocaEmpFil(cEmpAtu,cFilAtu)
 		else
 			geraLog('	>> ERRO ao posicionar no usuário ' + cIdUserAtu + '...')
 		endif
+		geraLog( "	>> OPERADOR NOVO....:" + CBRetOpe()  )
 	else
-		Conout( "	>> ERRO NA TROCA DE EMPRESA/FILIAL!" )
+		geraLog( "	>> ERRO NA TROCA DE EMPRESA/FILIAL!" )
 		VTAlert("	>> Não foi possível entrar na empresa/filial: " + cEmpAtu + "/" + cFilAtu,"Aviso",.T.,4000)
 	endif
-	Conout( "FIM TROCA EMPRESA/FILIAL" )
-	Conout( Replicate('-',60) )
+	geraLog( "FIM TROCA EMPRESA/FILIAL" )
+	geraLog( Replicate('-',60) )
 
 	SetFunName(cFunBkp)
 return
@@ -560,10 +564,11 @@ Static Function Consulta(aLista)
 
 Return
 
-//-----------------------------------------------------------------
-Static Function fDadosCompl(cNota,cSerie)
 
-	local aTela				:= {}
+//-----------------------------------------------------------------
+Static Function fDadosCompl(aDadosTransf)
+
+	Local aTela				:= {}
 
 	Private cTransp			:= Space(06)
 	Private cPlaca			:= Space(07)
@@ -572,13 +577,7 @@ Static Function fDadosCompl(cNota,cSerie)
 	Private nPesoLiq		:= 00000
 	Private nPesoBrt		:= 00000
 
-	DbSelectArea("SF2")
-	SF2->(DbSetOrder(1))
-	If dbSeek(xFilial("SF2")+cNota+cSerie)
-		nVolume 	:= SF2->F2_VOLUME1
-		nPesoLiq	:= SF2->F2_PLIQUI
-		nPesoBrt	:= SF2->F2_PBRUTO
-	EndIf
+	RetDdCompl(aDadosTransf)
 
 	aTela := VTSave()
 
@@ -591,6 +590,7 @@ Static Function fDadosCompl(cNota,cSerie)
 	@ 005,000 VTSAY "UF:"
 	@ 006,000 VTGet cUFPlaca pict '@!' Valid fVldUF(cUFPlaca) .and. !Empty(cUFPlaca)
 	VTRead()
+
 	If nVolume == 0 .OR. nPesoLiq == 0 .OR.  nPesoBrt == 0
 		VTAlert("Volume ou peso estao zerados, favor informar esses dados:","Aviso",.T.,4000)
 		VTClear()
@@ -612,7 +612,40 @@ Static Function fDadosCompl(cNota,cSerie)
 	aAdd( aDadComplem, nPesoLiq )		//POS_PESLIQ
 	aAdd( aDadComplem, nPesoBrt )		//POS_PESBRU
 
-return
+Return
+
+
+/*
+Fausto Costa
+08/07/2022
+*/
+Static Function RetDdCompl(aDadosTransf)
+Local nX 		:= 1
+Local cAlias	:= GetNextAlias()
+Local cQry			:= ""
+
+If(Select(cAlias) > 0)
+	(cAlias)->(DBCloseArea())
+EndIf
+
+For nX := 1 To Len(aDadosTransf)
+	cQry:= "SELECT SUM(SB8.B8_ZZPLIQ) AS PESOLIQ, SUM(SB8.B8_ZZPBRUT) AS PESOBRU, COUNT(*) AS QTDVOL, SUM(SB8.B8_SALDO2) AS SALDO2 " + CRLF
+	cQry+= "FROM "+RetSqlName("SB8")+" SB8 WITH (NOLOCK) " + CRLF
+	cQry+= "WHERE SB8.D_E_L_E_T_ = '' AND SB8.B8_FILIAL = '"+aDadosTransf[nX,1]+"' AND SB8.B8_PRODUTO = '"+aDadosTransf[nX,2]+"' AND SB8.B8_LOCAL = '"+aDadosTransf[nX,3]+"' AND SB8.B8_LOTECTL = '"+aDadosTransf[nX,17]+"' " + CRLF
+
+	TcQuery cQry Alias &cAlias New
+
+	nPesoBrt	+= (cAlias)->PESOBRU
+	nPesoLiq	+= (cAlias)->PESOLIQ
+	nVolume		+= (cAlias)->QTDVOL
+
+	If(Select(cAlias) > 0)
+		(cAlias)->(DBCloseArea())
+	EndIf
+Next
+
+Return
+
 
 //-----------------------------------------------------------------
 /*/{Protheus.doc} Finaliza
@@ -837,7 +870,7 @@ Static Function Finaliza()
 		Return(.F.)
 	EndIf
 
-	fDadosCompl(cNota,cSerie)
+	fDadosCompl(aDadosTransf)
 
 	Begin Transaction
 
@@ -868,8 +901,9 @@ Static Function Finaliza()
 					EndIf
 					*/
 
+					/* Fausto Costa - 08/07/2022
 					If VTYesNo("Gravar Dados Complementares ?","Atencao",.T.)
-
+					*/
 						lGravou:= GravaDadosCompl( cNota,cSerie )
 
 						if lGravou
@@ -899,9 +933,11 @@ Static Function Finaliza()
 						else
 							loop
 						endif
+					/* Fausto Costa - 08/07/2022
 					else
 						loop
 					endif
+					*/
 					VtRestore(,,,,aTela)
 				enddo
 			else
@@ -1681,4 +1717,9 @@ static Function restAreas()
 		RestArea(aAreasTab[nAreas])
 	next
 
+return
+
+//----------------------------------------------------------------------------------------------------------
+static function geraLog(cMensagem)
+	ConOut('[ACDTRANS01]' + cMensagem )
 return

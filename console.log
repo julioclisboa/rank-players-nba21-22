@@ -1,0 +1,465 @@
+2022-07-08T11:30:28.378000-03:00 9932|Starting (TOTVS PROTHEUS 12 - HOMOLOGACAO DESKTOP (1248,2304))...
+Please wait...2022-07-08T11:30:28.381000-03:00 6620|
+2022-07-08T11:30:28.381000-03:00 6620|*** SERVER BUILD WITH CLASS INSTANCE RUNNING CHECK
+2022-07-08T11:30:28.382000-03:00 6620|*** SERVER BUILD WITH FREEVAR IMPLEMENTATION
+2022-07-08T11:30:28.382000-03:00 6620|*** SERVER BUILD WITH ENHANCED CODEBLOCK MANAGER
+2022-07-08T11:30:28.382000-03:00 6620|*** SERVER BUILD WITH ENHANCED LOCALENV MANAGER
+2022-07-08T11:30:28.382000-03:00 6620|*** SERVER BUILD WITH LOCKSERVER CLIENT SINGLE CONNECTION
+2022-07-08T11:30:28.382000-03:00 6620|*** SERVER BUILD WITH DUAL-STACK SOCKETS FOR IPV6 IMPLEMENTATION
+2022-07-08T11:30:28.382000-03:00 6620|*** DEFAULT SOCKET BIND IS IPV4 
+2022-07-08T11:30:28.383000-03:00 6620|*** SERVER BUILD WITH TRACK UNRELEASED LOCKS IMPLEMENTATION
+2022-07-08T11:30:28.383000-03:00 6620|*** SERVER BUILT WITH STRING_STRICT_SIZE OPTIMIZATION ***
+2022-07-08T11:30:28.383000-03:00 6620|
+2022-07-08T11:30:28.383000-03:00 6620|
+---------------- OS System Info -----------------------------------------------
+OS Version .........: Windows Server 2016 [Version 10.0.14393]
+OS Platform ........: Windows NT Based (x64)
+OS Version Info ....: 
+OS Power Scheme ....: Balanced - 'High Performance' is recommended
+-------------------------------------------------------------------------------
+
+
+---------------- OS Memory Info -----------------------------------------------
+Physical memory .     7999.55 MB.   Used     5670.56 MB.   Free     2328.99 MB.
+Paging file .....     9668.48 MB.   Used     6958.46 MB.   Free     2710.02 MB.
+-------------------------------------------------------------------------------
+
+2022-07-08T11:30:28.385000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] APP Virtual Address Allocation Limit .... 134217727.88 MB.
+2022-07-08T11:30:28.385000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] Memory Monitor Virtual Address LIMIT .... 134217727.88  MB.
+2022-07-08T11:30:28.386000-03:00 8132|Current directory != Application path (C:\Windows\system32\ != C:\TOTVS\PROTHEUS\PRODUCAO\protheus12\bin\appserver_desktop\)
+2022-07-08T11:30:28.386000-03:00 8132|Set current directory to C:\TOTVS\PROTHEUS\PRODUCAO\protheus12\bin\appserver_desktop\
+2022-07-08T11:30:28.386000-03:00 6620|
+[INFO ][SSL] SSL global initialization
+2022-07-08T11:30:28.387000-03:00 8132|
+[WARN ][SERVER] [Thread 8132] [08/07/2022 11:30:28] *** The current power scheme is 'Balanced' - 'High Performance' is recommended. ***
+2022-07-08T11:30:28.396000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] Telnet (vt100) Server started on port 2304.
+2022-07-08T11:30:28.396000-03:00 6620|
+Telnet server.
+2022-07-08T11:30:28.396000-03:00 6620|  Listening port 23042022-07-08T11:30:28.396000-03:00 6620|
+2022-07-08T11:30:28.399000-03:00 6620|
+[INFO ][SERVER] Application PID  ......... [8136]
+2022-07-08T11:30:28.399000-03:00 6620|
+[INFO ][SERVER] Application Main Thread .. [6620]
+2022-07-08T11:30:28.400000-03:00 6620|
+[INFO ][SERVER] [MPPORT] Starting Multi Protocol Port in: port 1248
+2022-07-08T11:30:28.401000-03:00 6620|
+[WARN ][SERVER] [MPPORT] Incomplete SSL values. Ignore Method: 'TLSV1.2' using default
+2022-07-08T11:30:28.402000-03:00 6620|
+[INFO ][SERVER] [MPPORT] Starting Multi Protocol using default SSL: (totvs_certificate.crt | totvs_certificate_key.pem | -)
+2022-07-08T11:30:28.402000-03:00 6620|
+[INFO ][SERVER] [MPPORT] Default Rest environment not configured. To enable: [general]app_environment=environment
+2022-07-08T11:30:28.403000-03:00 784|
+[INFO ][SERVER] [MPPORT] *** Starting Multi Protocol Port Server ***
+2022-07-08T11:30:28.629000-03:00 784|[VDRPORT] 220708_113028 0310 VST0092 N setting up multithreading support
+2022-07-08T11:30:28.642000-03:00 6620|
+[INFO ][SERVER] [MPPORT] [Thread 6620] Application Server started on internal port
+2022-07-08T11:30:28.644000-03:00 6620|
+[INFO ][SERVER] [APPMON] - Starting Application Monitor2022-07-08T11:30:28.658000-03:00 6620|
+[INFO ][SERVER] Loading map 1/5 TLPP RPO: 206
+2022-07-08T11:30:28.659000-03:00 6620|
+[INFO ][SERVER] Loading map 2/5 TLPP RPO: 8
+2022-07-08T11:30:28.659000-03:00 6620|
+[INFO ][SERVER] Loading map 3/5 TLPP RPO: 8
+2022-07-08T11:30:28.659000-03:00 6620|
+[INFO ][SERVER] Loading map 5/5 TLPP RPO: 2
+2022-07-08T11:30:28.667000-03:00 6620|
+2022-07-08T11:30:28.671000-03:00 6620|[APPMON] starting on port 32033
+2022-07-08T11:30:28.892000-03:00 6620|
+[ERROR][SERVER] [Thread 6620] error starting server APP_MONITOR_SERVER on ID: 0, return code: 10048
+2022-07-08T11:30:28.892000-03:00 6620|
+[ERROR][SERVER] [Thread 6620] HTTP Server - fail to start. server name: 'APP_MONITOR_SERVER' (10048).
+
+2022-07-08T11:30:28.892000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] * ---------------------------------------------------------------------- *
+2022-07-08T11:30:28.892000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] HTTP server stop Request2022-07-08T11:30:28.892000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] Thread Pool APP_MONITOR_THREADPOOL stopping2022-07-08T11:30:28.892000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] Thread Pool APP_MONITOR_THREADPOOL stopped2022-07-08T11:30:28.892000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] stopping HTTP server on ID 02022-07-08T11:30:28.892000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] HTTP server stopped on ID 02022-07-08T11:30:28.892000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] HTTP server  Stopped - 27244A7501E2F846887303B2D774CFD8
+2022-07-08T11:30:28.892000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] * ---------------------------------------------------------------------- *
+
+2022-07-08T11:30:28.892000-03:00 6620|
+[ERROR][SERVER] [Thread 6620] HTTP Server fail to close. server name: 'APP_MONITOR_SERVER' (HTTP server  Stopped)
+2022-07-08T11:30:28.892000-03:00 6620|
+[ERROR][SERVER] [Thread 6620] HTTP Server fail to start (# 1)(10048)
+2022-07-08T11:30:28.892000-03:00 6620|
+[ERROR][SERVER] Fail to start HTTPSERVER. Error: 10048 "[Thread 6620] HTTP Server - fail to start. server name: 'APP_MONITOR_SERVER' (10048).
+"2022-07-08T11:30:28.897000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] server APP_MONITOR_SERVER, started on ID: 0
+2022-07-08T11:30:28.897000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] HTTP Server - APP_MONITOR_SERVER, started on port:  59229.
+2022-07-08T11:30:28.897000-03:00 6620|[APPMON] Started on port: 59229
+2022-07-08T11:30:28.897000-03:00 6620|[APPMON] Started on port: 59229 on /api
+2022-07-08T11:30:28.910000-03:00 6620|
+[INFO ][SERVER] [Thread     0] JOB Thread finished [-]
+2022-07-08T11:30:28.910000-03:00 6620|
+[INFO ][SERVER] [APPMON] - Started Application Monitor on port 59229 on URI /api
+2022-07-08T11:30:28.911000-03:00 6620|
+----------- Services Start Time  ----------
+2022-07-08T11:30:28.911000-03:00 6620|              TELNET	0.002 s	
+2022-07-08T11:30:28.911000-03:00 6620|         JOB MANAGER	0.000 s	
+2022-07-08T11:30:28.911000-03:00 6620|                 TCP	0.245 s	
+2022-07-08T11:30:28.911000-03:00 6620|         LOCK SERVER	0.000 s	
+2022-07-08T11:30:28.911000-03:00 6620|         APP Monitor	0.268 s	
+2022-07-08T11:30:28.911000-03:00 6620|  HTTPSERVER - VADER	0.000 s	
+2022-07-08T11:30:28.911000-03:00 6620|
+--- Application Server Start Time: 0.515 s
+2022-07-08T11:30:28.911000-03:00 6620|
+[08/07/2022 11:30:28] TOTVSVm Server started.
+2022-07-08T11:30:39.632000-03:00 1984|
+[WARN ][SERVER] [Thread 4868] [TELNET] INACTIVETIMEOUT = 600 seconds is ON.
+2022-07-08T11:30:39.887000-03:00 1984|
+[INFO ][SERVER] Loading map 1/5 Default RPO: 112059
+2022-07-08T11:30:40.760000-03:00 1984|
+[INFO ][SERVER] Loading map 2/5 Default RPO: 10001
+2022-07-08T11:30:41.053000-03:00 1984|
+[INFO ][SERVER] Loading map 3/5 Default RPO: 10001
+2022-07-08T11:30:41.312000-03:00 1984|
+[INFO ][SERVER] Loading map 5/5 Default RPO: 100687
+2022-07-08T11:30:42.440000-03:00 1984|
+[INFO ][SERVER] Loading map 1/5 TLPP RPO: 206
+2022-07-08T11:30:42.440000-03:00 1984|
+[INFO ][SERVER] Loading map 2/5 TLPP RPO: 8
+2022-07-08T11:30:42.440000-03:00 1984|
+[INFO ][SERVER] Loading map 3/5 TLPP RPO: 8
+2022-07-08T11:30:42.440000-03:00 1984|
+[INFO ][SERVER] Loading map 5/5 TLPP RPO: 2
+2022-07-08T11:30:42.446000-03:00 1984|
+[INFO ][SERVER] Loading map 1/5 Custom RPO: 990
+2022-07-08T11:30:42.447000-03:00 1984|
+[INFO ][SERVER] Loading map 2/5 Custom RPO: 108
+2022-07-08T11:30:42.447000-03:00 1984|
+[INFO ][SERVER] Loading map 3/5 Custom RPO: 108
+2022-07-08T11:30:42.447000-03:00 1984|
+[INFO ][SERVER] Loading map 5/5 Custom RPO: 6
+2022-07-08T11:30:42.527000-03:00 4868|
+*** Loading dbapi.dll
+2022-07-08T11:30:42.527000-03:00 4868|*** dbapi.dll Build 20210202-20220603 RELEASE (API Version: 21.1.1.4)
+2022-07-08T11:30:42.825000-03:00 9732|
+Loading Ctree Client [mtclient.dll]
+2022-07-08T11:30:42.826000-03:00 9732|******************************************************************
+2022-07-08T11:30:42.827000-03:00 9732|c-Tree Server Version ... Faircom Version: a9552178
+Callback Version: AP Build 7.00.131227A
+2022-07-08T11:30:42.827000-03:00 9732|CtreeServer Microsiga Edition
+2022-07-08T11:30:42.827000-03:00 9732|Faircom Version: a9552178
+Callback Version: AP Build 7.00.131227A
+2022-07-08T11:30:42.827000-03:00 9732|******************************************************************
+
+2022-07-08T11:30:51.361000-03:00 4868|
+[INFO ][SERVER] [Thread 4868] INACTIVETIMEOUT changed from [0] seconds to [5400] seconds.
+2022-07-08T11:31:31.319000-03:00 4868|------------------------------------------------------------
+2022-07-08T11:31:31.319000-03:00 4868|INICIO TROCA EMPRESA/FILIAL
+2022-07-08T11:31:31.320000-03:00 4868|	>> EMPRESA ATUAL [01]
+2022-07-08T11:31:31.320000-03:00 4868|	>> FILIAL ATUAL [0101]
+2022-07-08T11:31:31.320000-03:00 4868| 
+2022-07-08T11:31:31.320000-03:00 4868|	>> EMPRESA NOVA [01]
+2022-07-08T11:31:31.320000-03:00 4868|	>> FILIAL NOVA [0101]
+2022-07-08T11:31:32.409000-03:00 4868|	>> TROCA DE EMPRESA/FILIAL REALIZADA COM SUCESSO!
+2022-07-08T11:31:32.410000-03:00 4868|	>> EMPRESA/FILIAL NOVA: [01/0101]
+2022-07-08T11:31:32.721000-03:00 4868|FIM TROCA EMPRESA/FILIAL
+2022-07-08T11:31:32.721000-03:00 4868|------------------------------------------------------------
+2022-07-08T11:32:13.300000-03:00 9732|
+[INFO ][SERVER] [Thread  9732] JOB Thread finished [-MPNEWSUPDATE]
+2022-07-08T11:32:15.491000-03:00 10296|--------------------------------------------------------------------------------
+2022-07-08T11:32:15.491000-03:00 10296|FTJOBPVCF(039690): Cash flow for sales order
+2022-07-08T11:32:19.156000-03:00 10296|--------------------------------------------------------------------------------
+2022-07-08T11:32:19.537000-03:00 10296|
+[INFO ][SERVER] [Thread 10296] JOB Thread finished [-FTJOBPVCF]
+2022-07-08T11:33:13.418000-03:00 4868|------------------------------------------------------------
+2022-07-08T11:33:13.418000-03:00 4868|INICIO TROCA EMPRESA/FILIAL
+2022-07-08T11:33:13.418000-03:00 4868|	>> EMPRESA ATUAL [01]
+2022-07-08T11:33:13.418000-03:00 4868|	>> FILIAL ATUAL [0105]
+2022-07-08T11:33:13.418000-03:00 4868| 
+2022-07-08T11:33:13.418000-03:00 4868|	>> EMPRESA NOVA [01]
+2022-07-08T11:33:13.419000-03:00 4868|	>> FILIAL NOVA [0105]
+2022-07-08T11:33:14.048000-03:00 4868|	>> TROCA DE EMPRESA/FILIAL REALIZADA COM SUCESSO!
+2022-07-08T11:33:14.048000-03:00 4868|	>> EMPRESA/FILIAL NOVA: [01/0105]
+2022-07-08T11:33:14.361000-03:00 4868|FIM TROCA EMPRESA/FILIAL
+2022-07-08T11:33:14.361000-03:00 4868|------------------------------------------------------------
+2022-07-08T11:33:40.356000-03:00 4868|
+[FATAL][SERVER] 08/07/2022 11:33:40[Thread 4868] [THROW] tVTReadBytes - Telnet Connection Broken at file C:\bamboo\xml-data\build-dir\TP11-OF20300-TECXWIN64\advpl\apliservers.cpp line 5009
+2022-07-08T11:33:40.357000-03:00 4868|
+/*-------------------------------------------------------
+THREAD ERROR ([4868], HTTP:GENPROC, THIS)   08/07/2022   11:33:40
+tVTReadBytes - Telnet Connection Broken in file C:\bamboo\xml-data\build-dir\TP11-OF20300-TECXWIN64\advpl\apliservers.cpp at line 5009
+ on VTREADBYTE(VT100.PRG) 08/06/2022 16:53:24 line : 1213
+
+[build: 7.00.210324P-20220608]
+[environment: ACD]
+[thread: 4868]
+[dbthread: 2764]
+[dbversion: 21.1.1.4]
+[dbapibuild: 20210202-20220603]
+[dbarch: 64]
+[dbso: WINDOWS]
+[rpodb: top]
+[localfiles: CTREE]
+[remark: Emp :01/0105 Logged :USUARIO TI                SIGAACD  Obj :Main Window]
+[threadtype: VtJobAppThread]
+Called from VTCTRLGETBYTE(VT100.PRG) 08/06/2022 16:53:24 line : 1187
+Called from VTGETBYTE(VT100.PRG) 08/06/2022 16:53:24 line : 1155
+Called from VTINKEY(VT100.PRG) 08/06/2022 16:53:24 line : 1345
+Called from VTACHOICE(VT100.PRG) 08/06/2022 16:53:24 line : 1546
+Called from VTMONTAMENU(VTXFUN.PRW) 29/11/2021 08:22:25 line : 174
+Called from SIGAACD(SIGAACD.PRW) 28/11/2019 15:25:31 line : 123
+
+Stack : 
+tVTReadBytes - Telnet Connection Broken in file C:\bamboo\xml-data\build-dir\TP11-OF20300-TECXWIN64\advpl\apliservers.cpp at line 5009
+ on VTREADBYTE(VT100.PRG) 08/06/2022 16:53:24 line : 1213
+
+[build: 7.00.210324P-20220608]
+[environment: ACD]
+[thread: 4868]
+[dbthread: 2764]
+[dbversion: 21.1.1.4]
+[dbapibuild: 20210202-20220603]
+[dbarch: 64]
+[dbso: WINDOWS]
+[rpodb: top]
+[localfiles: CTREE]
+[remark: Emp :01/0105 Logged :USUARIO TI                SIGAACD  Obj :Main Window]
+[threadtype: VtJobAppThread]
+Called from VTCTRLGETBYTE(VT100.PRG) 08/06/2022 16:53:24 line : 1187
+Called from VTGETBYTE(VT100.PRG) 08/06/2022 16:53:24 line : 1155
+Called from VTINKEY(VT100.PRG) 08/06/2022 16:53:24 line : 1345
+Called from VTACHOICE(VT100.PRG) 08/06/2022 16:53:24 line : 1546
+Called from VTMONTAMENU(VTXFUN.PRW) 29/11/2021 08:22:25 line : 174
+Called from SIGAACD(SIGAACD.PRW) 28/11/2019 15:25:31 line : 123
+-------------------------------------------------------*/
+2022-07-08T11:33:40.786000-03:00 4868|
+[INFO ][SERVER] [Thread  4868] JOB Thread finished [-]
+2022-07-08T11:33:45.665000-03:00 9932|
+[INFO ][SERVER] [Thread 9932]  Application Server Service Stopped...2022-07-08T11:33:45.665000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] Application Server (WIN version) in shutdown....
+2022-07-08T11:33:45.665000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] * ---------------------------------------------------------------------- *
+2022-07-08T11:33:45.665000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] HTTP server stop Request2022-07-08T11:33:45.665000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] Thread Pool APP_MONITOR_THREADPOOL stopping2022-07-08T11:33:45.665000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] Thread Pool APP_MONITOR_THREADPOOL stopped2022-07-08T11:33:45.665000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] stopping HTTP server on ID 02022-07-08T11:33:45.779000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] HTTP server stopped on ID 02022-07-08T11:33:45.782000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] HTTP server  Stopped
+2022-07-08T11:33:45.782000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] * ---------------------------------------------------------------------- *
+
+2022-07-08T11:33:45.782000-03:00 6620|
+[INFO ][SERVER] [Thread 6620][08/07/2022 11:33:45] Application SHUTDOWN in progress...
+2022-07-08T11:33:45.803000-03:00 6620|
+-------------- APO Map List ---------------
+Users [01] MAP [0.00 MB.] APO [C:\totvs\protheus\producao\protheus12\apo\custom01\mycustom.rpo] SYM [0.01 MB.] CODECACHE [0.33 MB.]
+Users [01] MAP [0.00 MB.] APO [c:\totvs\protheus\producao\protheus12\apo\producao_001\tttm120.rpo] SYM [2.39 MB.] CODECACHE [37.93 MB.]
+Users [01] MAP [0.00 MB.] APO [C:\TOTVS\PROTHEUS\PRODUCAO\protheus12\bin\appserver_desktop\tlpp.rpo] SYM [0.00 MB.] CODECACHE [0.01 MB.]
+
+----------- Total Thread Count ------------
+                 Total Threads ... 20
+                        Thread ... 3
+                       WThread ... 10
+                     JobThread ... 1
+                    SockServer ... 1
+                     RPCThread ... 1
+                      VtThread ... 3
+                      VtServer ... 1
+
+----------- Detailed Thread List ----------
+[      8944][       0.000 Kb]	HTTP:GENPROC__	THIS		MPNEWSUPDATE	ACD	Fri Jul  8 11:32:14 2022	00:01:31	933310	15388	7724	[]
+
+[     TOTAL][       0.000 Kb][Num: 1         ]
+
+----------- Detailed Process List ---- (*1)
+[      8132][       0.000 Kb][         Thread][ tMemoryMonitor][]
+[      2724][       0.000 Kb][       VtServer][       VtServer][]
+[      1984][       0.000 Kb][       VtThread][     tVTWThread][]
+[     10620][       0.000 Kb][       VtThread][     tVTWThread][]
+[     10732][       0.000 Kb][       VtThread][     tVTWThread][]
+[      7804][       0.000 Kb][         Thread][    tJobManager][]
+[       784][       0.000 Kb][         Thread][tMultiPortServer][]
+[     11232][       0.000 Kb][     SockServer][    tMainServer][]
+[      7320][       0.000 Kb][        WThread][   tWThreadBase][]
+[      9112][       0.000 Kb][        WThread][   tWThreadBase][]
+[      9892][       0.000 Kb][        WThread][   tWThreadBase][]
+[      7472][       0.000 Kb][        WThread][   tWThreadBase][]
+[      5636][       0.000 Kb][        WThread][   tWThreadBase][]
+[      3172][       0.000 Kb][        WThread][   tWThreadBase][]
+[     10376][       0.000 Kb][        WThread][   tWThreadBase][]
+[     11632][       0.000 Kb][        WThread][   tWThreadBase][]
+[     12048][       0.000 Kb][        WThread][   tWThreadBase][]
+[      8408][       0.000 Kb][        WThread][   tWThreadBase][]
+[     12244][       0.000 Kb][      RPCThread][     tRPCThread][]
+
+[     TOTAL][       0.000 Kb][Num: 19        ][               ][]
+
+----------- Global List Info --------------
+                 IMAP Glb List ...        0.000 kB. Count 0
+             Variable Glb List ...     2449.033 kB. Count 5000
+              Session Glb List ...        0.000 kB. Count 0
+                   SymTab List ...     2038.662 kB. Count 129386 Hits 430991
+                  TCP Glb List ... Count 0
+
+----------- Global Stack Info --------------
+
+----------- Global Queue Info --------------
+
+----------- Global File Queue Info --------------
+
+----------- Global Table and Hash Map Info --------------
+                Global Table X ...        0.365 Kb.	Keys X: 12
+                Global Table A ...        0.057 Kb.	Keys A: 1
+        Total (X + A + extras) ...        0.422 Kb.	Num Tables: 2
+
+                      Hash Map ...       13.953 Kb.
+
+----------- Multi Protocol Port - Allocation --------------
+------
+
+*** Message Pool Info ***
+Free             =        0
+Posted in accept =        8
+Posted           =        0
+Handled          =        0
+Total            =        8
+Buffer memory    =   163840 bytes
+------
+
+*** Handle Pool Info ***
+Listen     = 1
+Accepting  = 8
+Total      = 9
+------
+                 IntClass List ...        0.000 Kb. Count 117
+                  IntFunc List ...        0.000 Kb. Count 1034
+                  APPMAP Array ...        0.000 Kb. Count 3
+
+
+----------- SmartHeap Pools Info ----------
+                   pooltString ...     1088.00 kB. Count   4300 Ok
+                  poolrContent ...     1280.00 kB. Count   8116 Ok
+                 pooltInstrVar ...     1344.00 kB. Count   4909 Ok
+                    pooltConst ...     1088.00 kB. Count   2948 Ok
+                 pooltNamedVar ...      960.00 kB. Count   1205 Ok
+                      pooltSum ...      768.00 kB. Count   1343 Ok
+                  pooltCompare ...      832.00 kB. Count    699 Ok
+                 pooltLocalEnv ...      768.00 kB. Count    195 Ok
+        pooltInterFunctionCall ...      960.00 kB. Count    796 Ok
+       pooltDirectFunctionCall ...      768.00 kB. Count   1212 Ok
+                   pooltApoReg ...    15808.00 kB. Count 124504 Ok
+               pooltAssignBase ...     1024.00 kB. Count   1579 Ok
+                pooltCodeBlock ...      896.00 kB. Count     28 Ok
+             pooltCodeBlockEnv ...      576.00 kB. Count      8 Ok
+             pooltCodeBlockRef ...      640.00 kB. Count     23 Ok
+           pooltCodeBlockInstr ...      512.00 kB. Count     23 Ok
+                pooltClassData ...     1088.00 kB. Count   1011 Ok
+          pooltPrgFunctXRefEle ...     7552.00 kB. Count 234186 Ok
+               pooltIdentifier ...      704.00 kB. Count    366 Ok
+          pooltNamedVarXVarRef ...      704.00 kB. Count    578 Ok
+               pooltParmDefDet ...      960.00 kB. Count   2442 Ok
+                  pooltVarList ...      768.00 kB. Count    446 Ok
+                 pooltStatList ...      960.00 kB. Count    555 Ok
+                 pooltParmList ...      960.00 kB. Count   2387 Ok
+             pooltArrayElement ...      704.00 kB. Count    148 Ok
+                   pooltBaseIf ...      768.00 kB. Count    889 Ok
+                   pooltMethod ...      640.00 kB. Count   1424 Ok
+               pooltFindObject ...      640.00 kB. Count    274 Ok
+                  pooltSelfVar ...      576.00 kB. Count     64 Ok
+            pooltClassInstance ...      448.00 kB. Count      7 Ok
+               pooltMethodCall ...      704.00 kB. Count    117 Ok
+                   pooltReturn ...      640.00 kB. Count    212 Ok
+                pooltStaticEnv ...      960.00 kB. Count    256 Ok
+               pooltPrivateEnv ...      768.00 kB. Count    194 Ok
+           Default Memory Pool ...   151104.00 kB. Count 556146 Ok
+
+           TOTAL POOLED MEMORY ...   201856.00 kB.
+
+
+----------- OS Memory Summary -------------
+Physical memory .     7999.55 MB.   Used     5928.73 MB.   Free     2070.82 MB.
+Paging file .....     9668.48 MB.   Used     7292.18 MB.   Free     2376.29 MB.
+
+----------- APP Memory Summary ------------
+        Server Memory Capacity ... 134217727.875 MB.
+      Service Addressed Memory ...      362.340 MB.
+       Service Resident Memory ...      277.414 MB.
+
+
+----------- APP Process Info ------------
+                       Handles ... 000388.
+
+
+ (Turn on DebugThreadUsedMemory to see more detailed information of allocation)
+2022-07-08T11:33:45.803000-03:00 6620|
+[INFO ][SERVER] [Thread 6620][Thread Priority 20] Stopping Threads...
+2022-07-08T11:33:45.803000-03:00 6620|
+[INFO ][SERVER] [Thread 6620][Thread Priority 20] Notified finalization for 15 Live Threads 15
+2022-07-08T11:33:45.999000-03:00 8132|
+[INFO ][SERVER] [Thread 8132] Memory Monitor END
+2022-07-08T11:33:46.311000-03:00 6620|
+[INFO ][SERVER] [Thread 6620][Thread Priority 20] Notified finalization for 0 Live Threads 1
+2022-07-08T11:33:46.826000-03:00 6620|
+[INFO ][SERVER] [Thread 6620][Thread Priority 20] Notified finalization for 0 Live Threads 1
+2022-07-08T11:33:47.061000-03:00 8944|
+[INFO ][SSL] ok, SSL connection closed in first shutdown SSL reported status 12022-07-08T11:33:47.061000-03:00 8944|
+2022-07-08T11:33:47.061000-03:00 8944|
+/*-------------------------------------------------------
+THREAD ERROR ([8944], HTTP:GENPROC__, THIS)   08/07/2022   11:33:47
+Application Server is Shutting Down. on MPNEWSUPDATE(FWNEWSLETTER.PRW) 08/06/2022 16:53:24
+
+[build: 7.00.210324P-20220608]
+[environment: ACD]
+[thread: 8944]
+[dbthread: 7724]
+[dbversion: 21.1.1.4]
+[dbapibuild: 20210202-20220603]
+[dbarch: 64]
+[dbso: WINDOWS]
+[rpodb: top]
+[localfiles: CTREE]
+[remark: [KILL] [APPKILL] [TERM] ]
+[threadtype: JobThread]
+
+Stack : 
+Application Server is Shutting Down. on MPNEWSUPDATE(FWNEWSLETTER.PRW) 08/06/2022 16:53:24
+
+[build: 7.00.210324P-20220608]
+[environment: ACD]
+[thread: 8944]
+[dbthread: 7724]
+[dbversion: 21.1.1.4]
+[dbapibuild: 20210202-20220603]
+[dbarch: 64]
+[dbso: WINDOWS]
+[rpodb: top]
+[localfiles: CTREE]
+[remark: [KILL] [APPKILL] [TERM] ]
+[threadtype: JobThread]
+-------------------------------------------------------*/
+2022-07-08T11:33:47.327000-03:00 6620|
+[INFO ][SERVER] [Thread 6620][Thread Priority 20] Notified finalization for 0 Live Threads 1
+2022-07-08T11:33:47.395000-03:00 8944|
+[INFO ][SERVER] [Thread  8944] JOB Thread finished [-MPNEWSUPDATE]
+2022-07-08T11:33:47.764000-03:00 784|
+[INFO ][SERVER] [MPPORT] *** Quiting Multi Protocol Port Server ***
+2022-07-08T11:33:47.765000-03:00 784|[VDRPORT] 220708_113347 0310 APP0408 W stopping context manager...
+2022-07-08T11:33:47.843000-03:00 6620|
+[INFO ][SERVER] [Thread 6620][Thread Priority 20] Notified finalization for 0 Live Threads 0
+2022-07-08T11:33:47.874000-03:00 784|
+[INFO ][SERVER] [MPPORT] *** Stopped Multi Protocol Port Server ***. Ret: 0
+2022-07-08T11:33:48.358000-03:00 6620|
+[INFO ][SERVER] [Thread 6620][Thread Priority 20] Stopped Successfully
+2022-07-08T11:33:48.358000-03:00 6620|
+[INFO ][SERVER] [Thread 6620][Thread Priority XX] Stopping All Other Threads...
+2022-07-08T11:33:48.358000-03:00 6620|
+[INFO ][SERVER] [Thread 6620][Thread Priority XX] Notified finalization for 1 Live Threads 1
+2022-07-08T11:33:48.874000-03:00 6620|
+[INFO ][SERVER] [Thread 6620][Thread Priority XX] Notified finalization for 1 Live Threads 1
+2022-07-08T11:33:49.389000-03:00 6620|
+[INFO ][SERVER] [Thread 6620][Thread Priority XX] Notified finalization for 1 Live Threads 0
+2022-07-08T11:33:49.905000-03:00 6620|
+[INFO ][SERVER] [Thread 6620] All Threads Stopped Successfully 
+2022-07-08T11:33:49.908000-03:00 6620|
+TOTVS Finalizado
